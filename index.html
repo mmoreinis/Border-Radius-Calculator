@@ -1,25 +1,183 @@
-<figure>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>Nested Radius Calculator</title>
+
+    <link rel="canonical" href="https://codepen.io/phebert/pen/bGMPEJJ">
+  
+  
+  
+  
+<style>
+:root {
+  --demo-width: min(20em, 80vw);
+  --hue: 220;
+  --stroke-hue: 275;
+}
+figure {
+  --padding: 25px;
+  --radius: 50px;
+  
+  --demo-width: min(20em, 80vw);
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: Source Sans Pro, Source Sans, system-ui, sans-serif;
+}
+
+body {
+  padding-block: 1em;
+  gap: 2em;
+  background-color: hsl(var(--stroke-hue), 20%, 90%);
+}
+
+figure {
+  background: hsl(var(--stroke-hue), 60%, 98.5%);
+  box-shadow:   0px 0.8px 2.2px hsla(var(--hue), 100%, 10%, 0.02),
+  0px 1.9px 5.3px hsla(var(--hue), 100%, 10%, 0.028),
+  0px 3.6px 10px hsla(var(--hue), 100%, 10%, 0.035),
+  0px 6.5px 17.9px hsla(var(--hue), 100%, 10%, 0.042),
+  0px 12.1px 33.4px hsla(var(--hue), 100%, 10%, 0.05),
+  0px 29px 80px hsla(var(--hue), 100%, 10%, 0.07);
+    
+  width: var(--demo-width);
+  height: var(--demo-width);
+  padding-top: 1em;
+  padding-left: 1em;
+  display: grid;
+  place-items: stretch;
+  position: relative;
+}
+
+figcaption {
+  background: hsl(var(--hue), 60%, 95%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5em;
+  text-align: center;
+  font-variant-numeric: tabular;
+  font-size: 1.5em;
+}
+
+.outer { 
+  background: hsl(275, 95%, 60%);
+  display: grid;
+  place-items: stretch;
+  padding-top: var(--padding);
+  padding-left: var(--padding);
+  border-top-left-radius: var(--radius);
+}
+
+.inner {
+  background: hsl(220, 30%, 85%);
+  border-top-left-radius: calc(var(--radius) - var(--padding));
+}
+
+form {
+  width: var(--demo-width);
+  display: grid;
+  gap: 1em;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+input {
+  accent-color: hsl(275, 95%, 60%);
+  display: block;
+  width: 100%;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <figure style="--radius: 38px;">
   <div class="outer">
     <div class="inner">
     </div>
   </div>
   <figcaption>
-    <span class="outer-radius">50</span>px 
+    <span class="outer-radius">38</span>px 
     - 
     <span class="padding">25</span>px 
     = 
-    <span class="inner-radius">25</span>px
+    <span class="inner-radius">13</span>px
   </figcaption>
 </figure>
 
 <form>
   <label>
     Outer Border Radius
-    <input type="range" min="0" max="100" value="50" name="radius"/>
+    <input type="range" min="0" max="100" value="50" name="radius">
   </label>
   
   <label>
     Gap
-    <input type="range" min="0" max="50" value="25" name="padding"/>
+    <input type="range" min="0" max="50" value="25" name="padding">
   </label>
 </form>
+  
+      <script id="rendered-js">
+const figureEl = document.querySelector('figure');
+const inputs = document.querySelectorAll('input');
+
+const radiusInputEl = document.querySelector('[name="radius"]');
+const paddingInputEl = document.querySelector('[name="padding"]');
+
+const outerRadiusEl = document.querySelector('.outer-radius');
+const innerRadiusEl = document.querySelector('.inner-radius');
+const paddingEl = document.querySelector('.padding');
+
+function updateFigure({ target }) {
+  figureEl.style.setProperty(`--${target.name}`, `${target.value}px`);
+
+  outerRadiusEl.textContent = radiusInputEl.value;
+  paddingEl.textContent = paddingInputEl.value;
+  innerRadiusEl.textContent = radiusInputEl.value - paddingInputEl.value;
+}
+
+document.addEventListener('input', updateFigure);
+document.addEventListener('change', updateFigure);
+//# sourceURL=pen.js
+    </script>
+
+  
+
+
+
+</body></html>
