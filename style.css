@@ -1,0 +1,91 @@
+:root {
+  --demo-width: min(20em, 80vw);
+  --hue: 220;
+  --stroke-hue: 275;
+}
+figure {
+  --padding: 25px;
+  --radius: 50px;
+  
+  --demo-width: min(20em, 80vw);
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: Source Sans Pro, Source Sans, system-ui, sans-serif;
+}
+
+body {
+  padding-block: 1em;
+  gap: 2em;
+  background-color: hsl(var(--stroke-hue), 20%, 90%);
+}
+
+figure {
+  background: hsl(var(--stroke-hue), 60%, 98.5%);
+  box-shadow:   0px 0.8px 2.2px hsla(var(--hue), 100%, 10%, 0.02),
+  0px 1.9px 5.3px hsla(var(--hue), 100%, 10%, 0.028),
+  0px 3.6px 10px hsla(var(--hue), 100%, 10%, 0.035),
+  0px 6.5px 17.9px hsla(var(--hue), 100%, 10%, 0.042),
+  0px 12.1px 33.4px hsla(var(--hue), 100%, 10%, 0.05),
+  0px 29px 80px hsla(var(--hue), 100%, 10%, 0.07);
+    
+  width: var(--demo-width);
+  height: var(--demo-width);
+  padding-top: 1em;
+  padding-left: 1em;
+  display: grid;
+  place-items: stretch;
+  position: relative;
+}
+
+figcaption {
+  background: hsl(var(--hue), 60%, 95%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5em;
+  text-align: center;
+  font-variant-numeric: tabular;
+  font-size: 1.5em;
+}
+
+.outer { 
+  background: hsl(275, 95%, 60%);
+  display: grid;
+  place-items: stretch;
+  padding-top: var(--padding);
+  padding-left: var(--padding);
+  border-top-left-radius: var(--radius);
+}
+
+.inner {
+  background: hsl(220, 30%, 85%);
+  border-top-left-radius: calc(var(--radius) - var(--padding));
+}
+
+form {
+  width: var(--demo-width);
+  display: grid;
+  gap: 1em;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+input {
+  accent-color: hsl(275, 95%, 60%);
+  display: block;
+  width: 100%;
+}
